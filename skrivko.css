@@ -1,0 +1,341 @@
+/* * * * * * * * * * * * * *
+
+          SKRIVKO 
+
+  For writing comic books
+
+ * * * * * * * * * * * * * */
+
+/* PREFERENCES */
+/* Please use :root to adjust your preference  */
+/* for your working font and dialogue block colors */
+:root {
+    --font: 'courier prime', 'courier new', 'courier', monospace;
+    --code:  'courier prime', 'courier new', 'courier', monospace;
+    --character-color:rgb(255,99,71);
+    --dialogue-color:rgb(70,130,180);
+}
+/*  If you goof and need to go back, here are the original settings.
+    --font: 'courier prime', 'courier new', 'courier', monospace;
+    --code:  'courier prime', 'courier new', 'courier', monospace;
+    --character-color:rgb(255,99,71);
+    --dialogue-color:rgb(70,130,180);
+*/
+/* TOP-LEVEL STYLES */
+html, body {
+    color:rgb(0,0,0);
+    background-color:rgb(255,255,255) !important;
+    font-family:var(--font);
+    font-size:2.25vw;
+    line-height:150%;
+}
+body {
+    margin:5%;
+    padding:0;
+}
+/* for PDF export */
+@media print {
+    body {
+        margin:1in;
+        font-size:3vw;
+        line-height:150%;
+    }
+    html, p, pre, code, .toc ul {
+        font-size:3vw !important;
+        line-height:150%;
+        orphans:3;
+    }
+    h1, h2, h3, h4, h5, h6, th, td {
+        font-size:3vw;
+        line-height:150%;
+    }
+    table {
+        display:inline-block;
+    }
+    blockquote, dl {
+        font-size:3vw;
+        line-height:150%;
+        display:inline-block !important;
+        widows:3;
+    }
+}
+/* adjusts for wide width view */
+@media screen and (min-width:1000px) {
+    body {
+        font-size:1.2vw;
+        margin:20%;
+        padding:0;
+    }
+    p, h1, h2, h3, h4, h5, h6, ol, ul, pre, code {
+        font-size:1.2vw !important;
+    }
+}
+/* adjustments for Typora */
+#write, .cm-s-typora-default {
+    font-size:1.5vw;
+    margin:5%;
+    padding:0;
+    line-height:150%
+}
+#write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write ol, #write ul, #write pre, #write code {
+    font-size:1.5vw !important;
+    line-height:150%
+}
+/* THE BASICS */
+p {
+    margin:0 0 1em 0;
+    max-width:100% !important;
+    padding:0;
+}
+figure {
+    margin:0;
+}
+figcaption {
+    display:none;
+}
+img {
+    height:auto;
+    max-width:100%;
+    padding:0;
+}
+a {
+    color:rgb(210,105,30);
+    text-decoration:none;
+}
+a:hover {
+    color:rgb(220,20,60);
+}
+pre {
+    width:100%;
+    padding:0;
+    margin:1rem 0 1rem 0;
+    overflow:hidden;
+}
+pre code {
+    padding:5%;
+    margin:0;
+    display:inline-block;
+    width:90%;
+}
+code {
+    font-family:var(--code);
+    color:rgb(0,0,0);
+    background-color:rgb(211,211,211);
+    white-space: pre-wrap;
+}
+hr {
+    border:0 solid transparent;
+}
+/* TITLE BLOCK */
+#title-block-header {
+    background:rgb(192,192,192);
+    text-align:left;
+    font-weight:normal;
+    padding:1em 10% 1em 10%;
+}
+#title-block-header h1 {
+    font-weight:normal;
+    display:inline;
+    border:none;
+}
+#title-block-header h1:before  {
+    display:inline;
+    margin:0;
+    font-weight:normal;
+    content:"";
+}
+#title-block-header .title:before {
+    content:"Title: ";
+}
+#title-block-header .author:before {
+    content:"Author: ";
+}
+/* HEADERS */
+h1, h2, h3, h4, h5, h6 {
+    font-family:var(--font);
+    margin:5%;
+    font-size:1rem;
+    font-weight:normal;
+    color:rgb(0,0,0);
+    margin:1em 0 1em 0;
+    padding:0;
+    text-align:left;
+}
+h1 {
+    padding:0 0 1em 0;
+    margin:0 0 2em 0;
+    border-bottom:2px solid;
+    font-weight:bold;
+}
+h1:before {
+    margin:3em auto 1em auto;
+    content:"* * *";
+    display:block;
+    text-align:center;
+    font-weight:normal;
+}
+h2 {
+    font-weight:bold;
+    text-decoration:underline;
+}
+h3 {
+    font-weight:normal;
+}
+h3:before {
+    content:"► ";
+}
+h4 {
+    text-align:center;
+    font-style:italic;
+}
+h5 {
+    font-weight:bold;
+}
+h6 {
+    margin-left:0.5in;
+}
+/* THE COUNTERS */
+h1 {
+    counter-reset: heading;
+}
+h5:before {
+    content: "[=" counter(heading)"=] ";
+    counter-increment: heading;
+}
+h5 {
+    counter-reset: panel;
+}
+h6:before {
+    content: "[" counter(heading)"." counter(panel)"] ";
+    counter-increment: panel;
+}
+/* LISTS */
+ul, ol {
+    margin:0 10% 0 5%;
+}
+/* DIALOGUE BLOCK OPTIONS */
+/* BLOCKQUOTES */
+blockquote {
+    text-decoration:none !important;
+    color:var(--character-color);
+    padding: 0;
+    margin: 0 6rem 0 12rem;
+    border: 0;
+}
+blockquote p {
+    text-decoration:none;
+    margin:0;
+    padding:0;
+}
+blockquote blockquote {
+    text-decoration:none !important;
+    color:var(--dialogue-color);
+    margin: 0 0 0 -6rem;
+    padding:0;
+}
+blockquote blockquote p {
+    padding:0 0 1rem 0 !important;
+}
+/* KO FENCED CODE BLOCKS */
+pre.ko code,
+pre code.language-ko {
+    font-family:var(--font);
+    display:block;
+    color:var(--dialogue-color);
+    background-color:rgb(255,255,255);
+    padding:0;
+    margin:0 6rem 0 6rem;
+    text-indent:6rem;
+}
+pre.ko code::first-line,
+code.language-ko::first-line {
+    color:var(--character-color);
+}
+/* DEFINITION LISTS */
+dl {
+    padding:0;
+    margin:0 6rem 0 6rem;
+}
+dt {
+    text-decoration:none !important;
+    color:var(--character-color);
+    padding: 0;
+    margin: 0 0 0 6rem;
+    border: 0;
+}
+dd {
+    text-decoration:none !important;
+    color:var(--dialogue-color);
+    margin: 0 0 1rem 0;
+    padding:0;
+}
+/* TABLES */
+table {
+    margin:0 0 1em 0;
+    padding:0 0 1em 0;
+}
+table, th, td {
+    border-collapse: collapse;
+}
+th, td {
+    border:1px solid;
+    padding:0.25em;
+    white-space: nowrap;
+}
+th {
+    color:rgb(2555,255,255);
+    background-color:rgb(0,0,0);
+}
+/* TABLE OF CONTENTS */
+#TOC, .toc {
+    margin:0;
+    border:1px solid;
+    padding:0.8em;
+}
+#TOC ul, .toc ul {
+    font-family:var(--code);
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+#TOC ul ul, .toc ul ul {
+    margin-left:2rem;
+}
+/* IMAGE OPTIONS */
+/* align the image */
+img[title~="="] { display:block; margin:0 auto 0 auto; }
+img[title~=":="] { display:block; float:left; margin:0 1em 1em 0; }
+img[title~="=:"] { display:block; float:right; margin:0 0 1em 1em; }
+br { clear:both; }
+/* set the image width */
+img[title~=":::::"] { width:79%; }
+img[title~="::::"] { width:65%; }
+img[title~=":::"] { width:49%; }
+img[title~="::"] { width:32%; }
+img[title~=":"] { width:19%; }
+/* image height */
+img[title~="^"] { height:50px; }
+img[title~="^^"] { height:100px; }
+img[title~="^^^"] { height:150px; }
+img[title~="^^^^"] { height:200px; }
+img[title~="^^^^^"] { height:250px; }
+/* border width */
+img[title~="+"] { border:thin solid; }
+img[title~="++"] { border:medium solid; }
+img[title~="+++"] { border:thick solid; }
+img[title~="++++"] { border:0.5rem solid; }
+img[title~="+++++"] { border:1rem solid; }
+/* round corners */
+img[title~="@"] { border-radius: 5px; }
+img[title~="@@"] { border-radius: 10px; }
+img[title~="@@@"] { border-radius: 15px; }
+img[title~="@@@@"] { border-radius: 20px; }
+img[title~="@@@@@"] { border-radius: 100%; }
+/* border colors */
+img[title~="+blue"] { border-color:rgb(70,130,180); }
+img[title~="+green"] { border-color: rgb(46,139,87); }
+img[title~="+red"] { border-color:rgb(255,99,71); }
+img[title~="+yellow"] { border-color: rgb(240,230,140); }
+img[title~="+purple"] { border-color: rgb(221,160,221); }
+img[title~="+orange"] { border-color: rgb(210,105,30); }
+
