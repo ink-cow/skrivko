@@ -2,7 +2,7 @@
 
 A formatting and structure system for writing comic books in Markdown.
 
-This is not an application or even a (programming) script. The system consists of a mere CSS file which formats dialogue blocks and sharpens the header structure for dividing scripts into sections, automatically numbering pages and panels, and organizing relevant material, such as notes and reference.
+This is not an application or even a (programming) script. The system consists of [a mere CSS file](skrivko.css) which formats dialogue blocks and sharpens the header structure for dividing scripts into sections, automatically numbering pages and panels, and organizing relevant material, such as notes and reference.
 
 ## Markdown
 
